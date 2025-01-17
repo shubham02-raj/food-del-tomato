@@ -1,0 +1,22 @@
+.Navbar-admin{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 4px;
+}
+.Navbar-admin .logo{
+    width: max(10%,80px);
+}
+.Navbar-admin .profile{
+    width: 40px;
+}
+.Navbar-admin .right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.Navbar-admin .right .logout-icon{
+    cursor: pointer;
+}
