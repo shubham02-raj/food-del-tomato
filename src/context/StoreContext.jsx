@@ -12,7 +12,7 @@ const StoreContextProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const fetchList = async () => {
-    const response = await axios.get("http://localhost:8000/productData");
+    const response = await axios.get("https://food-del-tomato-backend-d7x6.onrender.com/productData");
     console.log(response.data);
 
     if (response.data) {
