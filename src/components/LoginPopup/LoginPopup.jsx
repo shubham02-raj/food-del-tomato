@@ -29,7 +29,7 @@ const LoginPopup = ({ setShowLogin, setIsAdmin }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/usersData",
+        "https://food-del-tomato-backend-d7x6.onrender.com/usersData",
         loginData
       );
       console.log("Response:", response.data);
@@ -51,7 +51,7 @@ const LoginPopup = ({ setShowLogin, setIsAdmin }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/usersData");
+      const response = await axios.get("https://food-del-tomato-backend-d7x6.onrender.com/usersData");
 
       setUsersData(response.data);
       console.log("Response:", response.data);
