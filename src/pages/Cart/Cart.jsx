@@ -1,13 +1,40 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Cart.css";
 import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const [cartData, setCartData] = useState([]);
+
   const { cartItems, list, removeFromCart, getTotalCartAmount } =
     useContext(StoreContext);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    updatedCart();
+  }, [cartItems]);
+
+  const updatedCart = () => {
+    const keys = Object.keys(cartItems);
+    let arr = [];
+    arr = list.filter((item) => keys.includes(item.id));
+    console.log(arr.length);
+    console.log("testing keys ", keys);
+
+    setCartData((prev) => [
+      ...prev, // Keep existing cart items
+      ...arr.map((item) => ({
+        name: item.data.name,
+        price: item.data.price,
+        quantity: cartItems[item.id],
+      })),
+    ]);
+  };
+
+  const goToCheckoutPage = () => {
+    navigate("/order", { state: { cartData } });
+  };
 
   return (
     <div className="cart">
@@ -23,13 +50,10 @@ const Cart = () => {
         <br />
         <hr />
         {list.map((item, index) => {
-          
           if (cartItems[item.id] > 0) {
             return (
               <div key={index}>
-                
                 <div className="cart-items-title cart-items-item">
-                  
                   <img src={item.image} alt="" />
                   <p>{item.data.name}</p>
                   <p>${item.data.price}</p>
@@ -56,17 +80,17 @@ const Cart = () => {
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>${getTotalCartAmount()===0?0:2}</p>
+              <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>${getTotalCartAmount()===0?0:getTotalCartAmount() + 2}</b>
+              <b>
+                ${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}
+              </b>
             </div>
           </div>
-          <button onClick={() => navigate("/order")}>
-            PROCEED TO CHECKOUT
-          </button>
+          <button onClick={goToCheckoutPage}>PROCEED TO CHECKOUT</button>
         </div>
         <div className="cart-promocode">
           <div>
@@ -83,4 +107,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
