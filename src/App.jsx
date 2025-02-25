@@ -13,6 +13,8 @@ import ListAdmin from "./pages/ListAdmin/ListAdmin";
 import OrdersAdmin from "./pages/OrdersAdmin/OrdersAdmin";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SuccessPage from "./pages/SuccessPage/SuccessPage";
+import CancelPage from "./pages/CancelPaymentPage/CancelPaymentPage";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -36,7 +38,11 @@ const App = () => {
         </div>
       ) : (
         <div>
-          {showLogin ? <LoginPopup setShowLogin={setShowLogin} setIsAdmin={setIsAdmin} /> : <></>}
+          {showLogin ? (
+            <LoginPopup setShowLogin={setShowLogin} setIsAdmin={setIsAdmin} />
+          ) : (
+            <></>
+          )}
           <div className="app">
             <ToastContainer />
             <Navbar setShowLogin={setShowLogin} />
@@ -44,6 +50,8 @@ const App = () => {
               <Route path="/" element={<Home isAdmin={isAdmin} />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/order" element={<PlaceOrder />} />
+              <Route path="/success" element={<SuccessPage />} />
+              <Route path="/cancel" element={<CancelPage />} />
             </Routes>
           </div>
           <Footer />
