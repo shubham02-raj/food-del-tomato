@@ -1,7 +1,9 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const Stripe = require("stripe");
+import dotenv from "dotenv";
+dotenv.config();
+
+import express from "express";
+import cors from "cors";
+import Stripe from "stripe";
 
 const app = express();
 const port = 5000; // You can change the port if needed
