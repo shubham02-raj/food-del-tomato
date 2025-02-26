@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
@@ -46,7 +46,6 @@ const App = () => {
           <div className="app">
             <ToastContainer />
             <Navbar setShowLogin={setShowLogin} />
-            <Router>
               <Routes>
                 <Route path="/" element={<Home isAdmin={isAdmin} />} />
                 <Route path="/cart" element={<Cart />} />
@@ -54,7 +53,6 @@ const App = () => {
                 <Route path="/success" element={<SuccessPage />} />
                 <Route path="/cancel" element={<CancelPage />} />
               </Routes>
-            </Router>
           </div>
           <Footer />
         </div>
