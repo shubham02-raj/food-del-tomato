@@ -36,8 +36,8 @@ app.post("/create-checkout-session", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: `${BACKEND_URL}/payment/#/success`, // Redirect to backend
-      cancel_url: `${BACKEND_URL}/payment/#/cancel`, // Redirect to backend
+      success_url: `${BACKEND_URL}/#/success`, // Redirect to backend
+      cancel_url: `${BACKEND_URL}/#/cancel`, // Redirect to backend
       line_items: cartItems.map((item) => ({
         price_data: {
           currency: "usd",
