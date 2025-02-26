@@ -94,7 +94,7 @@ const PlaceOrder = () => {
     const stripe = await stripePromise;
 
     const response = await fetch(
-      "http://localhost:5000/create-checkout-session",
+      "https://food-del-tomato-backend-stripe.onrender.com/create-checkout-session",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
