@@ -15,6 +15,19 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 app.use(cors());
 app.use(express.json()); // Parse JSON requests
 
+const FRONTEND_URL = "https://food-del-tomato-frontend.onrender.com";
+const BACKEND_URL = "https://food-del-tomato-backend-stripe.onrender.com"
+
+// Stripe payment success route
+app.get("/payment/success", (req, res) => {
+  return res.redirect(`${FRONTEND_URL}/success`);
+});
+
+// Stripe payment cancel route
+app.get("/payment/cancel", (req, res) => {
+  return res.redirect(`${FRONTEND_URL}/cancel`);
+});
+
 // API Route for Creating Stripe Checkout Session
 app.post("/create-checkout-session", async (req, res) => {
   try {
@@ -23,8 +36,8 @@ app.post("/create-checkout-session", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: "https://food-del-tomato-frontend.onrender.com/success",
-      cancel_url: "https://food-del-tomato-frontend.onrender.com/cancel",
+      success_url: `${BACKEND_URL}/payment/success`, // Redirect to backend
+      cancel_url: `${BACKEND_URL}/payment/cancel`, // Redirect to backend
       line_items: cartItems.map((item) => ({
         price_data: {
           currency: "usd",
