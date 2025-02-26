@@ -60,7 +60,7 @@ const PlaceOrder = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/deliveryData",
+        "https://food-del-tomato-backend-d7x6.onrender.com/deliveryData",
         deliveryInfo
       );
       console.log("Response:", response.data);
