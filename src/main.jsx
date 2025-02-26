@@ -6,11 +6,9 @@ import { HashRouter as Router } from "react-router-dom";
 import StoreContextProvider from "./context/StoreContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <HashRouter>
     <Router>
       <StoreContextProvider>
         <App />
       </StoreContextProvider>
     </Router>
-  </HashRouter>
 );
