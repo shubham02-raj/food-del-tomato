@@ -28,6 +28,11 @@ const FRONTEND_URL = "https://food-del-tomato-frontend.onrender.com";
 //   return res.redirect(`${FRONTEND_URL}/cancel`);
 // });
 
+// Added a health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
 // API Route for Creating Stripe Checkout Session
 app.post("/create-checkout-session", async (req, res) => {
   try {
